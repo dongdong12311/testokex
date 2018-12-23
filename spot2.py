@@ -20,8 +20,13 @@ file = open("ETH"+a+".csv",'w+')
 file.writelines("last,best_bid,best_ask\n")
 
 while 1:
-    result = spotAPI.get_specific_ticker('ETH-USDT')
-    file.writelines(result['last']+','+result['best_bid']+ ','+result['best_ask'] + '\n')
-    time.sleep(0.105)
+    try:        
+        result = spotAPI.get_specific_ticker('ETH-USDT')
+        file.writelines(result['last']+','+result['best_bid']+ ','+result['best_ask'] + '\n')
+        time.sleep(0.105)
+        print(result['last'])
+    except:
+        print("error")
+        time.sleep(1)
     
 file.close()
